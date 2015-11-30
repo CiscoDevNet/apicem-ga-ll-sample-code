@@ -1,11 +1,10 @@
 from apicem_config import * # Including apicem_config.py
 
-
 # Get service ticket by using function created in apicem_config.py
 ticket = get_X_auth_token( )
 
 # X-Auth-Token header
-headers = {"X-Auth-Token": ticket,'content-type': 'application/json'}
+headers = {"X-Auth-Token": ticket}
 
 # API base url
 url = "https://"+apicem_ip+"/api/v1/user"

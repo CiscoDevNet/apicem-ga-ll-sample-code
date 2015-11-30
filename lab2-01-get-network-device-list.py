@@ -2,7 +2,7 @@ from apicem_config import * # APIC-EM IP is assigned in apicem_config.py
 
 # Get token - function is in apicem_config.py
 ticket = get_X_auth_token()
-headers = {"content-type" : "application/json","X-Auth-Token": ticket}
+headers = {"X-Auth-Token": ticket}
 
 # API base url
 api = "/api/v1/network-device"

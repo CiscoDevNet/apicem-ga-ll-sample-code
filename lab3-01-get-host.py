@@ -2,7 +2,7 @@ from apicem_config import * # apicem_config.py is the central place to change th
 
 # Get token - function is in apicem_config.py
 ticket = get_X_auth_token()
-headers = {"content-type" : "application/json","X-Auth-Token": ticket}
+headers = {"X-Auth-Token": ticket}
 url = "https://"+apicem_ip+"/api/v1/host"   # API base url
 
 try:
