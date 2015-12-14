@@ -7,16 +7,25 @@ headers = {"X-Auth-Token": ticket}
 # API base url
 api = "/api/v1/network-device"
 url = "https://"+apicem_ip+api
-
-# The request and response of "GET /network-device" API
-resp= requests.get(url,headers=headers,verify = False)
-
-# Get the json-encoded content from response
-response_json = resp.json()
-
-# all network-device detail is in "response"
-device = response_json["response"]
-
+device = []
+try:
+    # The request and response of "GET /network-device" API
+    resp= requests.get(url,headers=headers,verify = False)
+    status = resp.status_code
+    print("Status: ",status)
+    # Get the json-encoded content from response
+    response_json = resp.json()
+    # all network-device detail is in "response"
+    device = response_json["response"]
+except:
+    print ("Something wrong, cannot get network device information")
+    sys.exit()
+    
+if status != 200:
+    print ("Response status %s,Something wrong !"%status)
+    print (resp.text)
+    sys.exit()
+    
 if device != [] :   # if response is not empty 
     device_list = []
     for item in device:
