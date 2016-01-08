@@ -3,7 +3,7 @@ from apicem_config import * # apicem_config.py is the central place to change th
 # Get token - function is in apicem_config.py
 ticket = get_X_auth_token()
 headers = {"X-Auth-Token": ticket}
-url = "https://"+apicem_ip+"/api/v1/host"   # API base url
+url = "https://"+apicem_ip+"/api/"+version+"/host"   # API base url
 
 try:
     resp= requests.get(url,headers=headers,verify = False)
@@ -12,6 +12,7 @@ try:
     print (json.dumps(response_json,indent=4)) # Convert "response_json" object to a JSON formatted string and print it out    
 except:
     print ("Something wrong !")
+    sys.exit()
 
 # Now create a list of host IP address
 host_ip_list=[]

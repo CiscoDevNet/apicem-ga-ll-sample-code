@@ -5,8 +5,7 @@ ticket = get_X_auth_token()
 headers = {"X-Auth-Token": ticket}
 
 # API base url
-api = "/api/v1/network-device"
-url = "https://"+apicem_ip+api
+url = "https://"+apicem_ip+"/api/"+version+"/network-device"
 device = []
 try:
     # The request and response of "GET /network-device" API

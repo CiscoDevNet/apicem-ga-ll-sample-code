@@ -7,7 +7,7 @@ ticket = get_X_auth_token( )
 headers = {"X-Auth-Token": ticket}
 
 # API base url
-url = "https://"+apicem_ip+"/api/v1/user"
+url = "https://"+apicem_ip+"/api/"+version+"/user"
 
 # Request and response (result) of "GET /user" API, "X-Auth-Token" header is in the request
 resp= requests.get(url,headers=headers,verify = False)

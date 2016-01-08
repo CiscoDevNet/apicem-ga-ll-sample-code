@@ -5,7 +5,7 @@ ticket = get_X_auth_token()
 headers = {"X-Auth-Token": ticket}
 
 # Prepare network device list
-url = "https://"+apicem_ip+"/api/v1/network-device"    # API base url
+url = "https://"+apicem_ip+"/api/"+version+"/network-device"    # API base url
 device = []
 try:
     resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /network-device" request
@@ -75,10 +75,10 @@ if device != [] :   # if response is not empty
     
     if user_input == '1':
         # get interface list
-        url  =  "https://"+apicem_ip+"/api/v1/interface/network-device/"+id
+        url  =  "https://"+apicem_ip+"/api/"+version+"/interface/network-device/"+id
     else:
         # get IOS configuration
-        url =  "https://"+apicem_ip+"/api/v1/network-device/"+id+"/config"
+        url =  "https://"+apicem_ip+"/api/"+version+"/network-device/"+id+"/config"
     resp = requests.get(url,headers=headers,verify = False)
     status = resp.status_code
     print("status: ",status)

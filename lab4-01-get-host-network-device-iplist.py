@@ -7,7 +7,7 @@ host_ip_list=[]
 device_ip_list=[]
 
 # Create a list of host IP address
-url = "https://"+apicem_ip+"/api/v1/host"   # API base url
+url = "https://"+apicem_ip+"/api/"+version+"/host"   # API base url
 # Create a list of host IP address
 try:
     resp= requests.get(url,headers=headers,verify = False)
@@ -19,7 +19,7 @@ except:
     print ("Something wrong, cannot get host IP list !")
 
 # Create a list of network-device IP address
-url = "https://"+apicem_ip+"/api/v1/network-device"
+url = "https://"+apicem_ip+"/api/"+version+"/network-device"
 try:
     resp= requests.get(url,headers=headers,verify = False)
     print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status 

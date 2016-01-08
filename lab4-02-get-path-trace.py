@@ -8,7 +8,7 @@ host_ip_list=[]
 device_ip_list=[]
 
 # Create a list of host IP address
-url = "https://"+apicem_ip+"/api/v1/host"   # API base url
+url = "https://"+apicem_ip+"/api/"+version+"/host"   # API base url
 # Create a list of host IP address
 try:
     resp= requests.get(url,headers=headers,verify = False)
@@ -20,7 +20,7 @@ except:
     print ("Something wrong, cannot get host IP list !")
 
 # Create a list of network-device IP address
-url = "https://"+apicem_ip+"/api/v1/network-device"
+url = "https://"+apicem_ip+"/api/"+version+"/network-device"
 try:
     resp= requests.get(url,headers=headers,verify = False)
     print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status 
@@ -75,7 +75,7 @@ while select:
 # JSON input for POST /flow-analysis
 path_data = {"sourceIP": s_ip, "destIP": d_ip}
 
-post_url = "https://"+apicem_ip+"/api/v1/flow-analysis"
+post_url = "https://"+apicem_ip+"/api/"+version+"/flow-analysis"
 r = requests.post(post_url, json.dumps(path_data), headers=headers,verify=False)
 response_json = r.json()
 print ("\nPOST flow-analysis Status: ",r.status_code)
@@ -88,7 +88,7 @@ except:
    print ("\n For some reason cannot get taskId")
    sys.exit()
 else:
-    url = "https://"+apicem_ip+"/api/v1/task/"+taskId
+    url = "https://"+apicem_ip+"/api/"+version+"/task/"+taskId
     r = requests.get(url,headers=headers,verify=False)
     response_json = r.json()
     print ("\nGET task with taskId status: ",r.status_code)
@@ -104,7 +104,7 @@ while pathId =="":
         # No endTime, no pathId yet
         print ("\nTask is not finished yet, sleep 1 second then try again")
         time.sleep(1)
-        url = "https://"+apicem_ip+"/api/v1/task/"+taskId
+        url = "https://"+apicem_ip+"/api/"+version+"/task/"+taskId
         r = requests.get(url,headers=headers,verify=False)
         response_json = r.json()
         print ("\nGET task with taskId status: ",r.status_code)
@@ -118,7 +118,7 @@ while pathId =="":
         else:                            
             pathId = response_json["response"]["progress"]
             print ("\nPOST flow-analysis task is finished now, here is the pathId: ",pathId)
-            url = "https://"+apicem_ip+"/api/v1/flow-analysis/"+pathId
+            url = "https://"+apicem_ip+"/api/"+version+"/flow-analysis/"+pathId
             r = requests.get(url,headers=headers,verify=False)
             response_json = r.json()
             print ("\nGET /flow-analysis/pathId Status: ",r.status_code)
