@@ -19,32 +19,32 @@ apicem_ip = "sandboxapic.cisco.com:9443"
 # Eneter user name and password to get a service ticket
 # If you assign username, password and version here you don't need to pass parameter when calling
 username = "admin"
-password = "1vtG@lw@y"
+password = "C!sc0123"
 version = "v1"
 
 def get_X_auth_token(ip=apicem_ip,uname = username,pword = password):
-    """ 
+    """
     This function returns a new service ticket.
     Passing ip, username and password when use as standalone function
     or overwrite the configuration above.
     """
     global version
-    
-    # JSON input for the post ticket API request 
+
+    # JSON input for the post ticket API request
     r_json = {
     "username": uname,
     "password": pword
     }
-    # url for the post ticket API request 
+    # url for the post ticket API request
     post_url = "https://"+ip+"/api/"+version+"/ticket"
-    # All APIC-EM REST API query and response content type is JSON   
+    # All APIC-EM REST API query and response content type is JSON
     headers = {'content-type': 'application/json'}
     # POST request and response
     try:
         r = requests.post(post_url, data = json.dumps(r_json), headers=headers,verify=False)
-        # remove '#' if need to print out response 
+        # remove '#' if need to print out response
         # print (r.text)
-        
+
         # return service ticket
         return r.json()["response"]["serviceTicket"]
     except:
@@ -52,4 +52,4 @@ def get_X_auth_token(ip=apicem_ip,uname = username,pword = password):
         print ("Status: %s"%r.status_code)
         print ("Response: %s"%r.text)
         sys.exit ()
-        
+
