@@ -10,7 +10,7 @@ requests.packages.urllib3.disable_warnings() # Disable warnings
 apicem_ip = "sandboxapic.cisco.com:9443"
 
 username = "admin"
-password = "1vtG@lw@y"
+password = "C!sc0123"
 version = "v1"
 
 # JSON input
