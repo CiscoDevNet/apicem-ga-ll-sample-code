@@ -22,7 +22,7 @@ except:
 url = "https://"+apicem_ip+"/api/"+version+"/network-device"
 try:
     resp= requests.get(url,headers=headers,verify = False)
-    print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status 
+    print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status
     response_json = resp.json() # Get the json-encoded content from response
     for item in response_json["response"]: # form network device ip list
         device_ip_list.append(item["managementIpAddress"])
@@ -30,16 +30,16 @@ except:
     print ("Something wrong, cannot get network-device IP list !")
 
 print ("---------- host ip ----------")
-if host_ip_list== [] :   # if response is not empty
+if host_ip_list== [] :   # if response is empty
     print ("      There is no host")
 else:
     for item in host_ip_list:
         print ('\t',item)
 print ("----- network-device ip -----")
-if device_ip_list == [] :   # if response is not empty
+if device_ip_list == [] :   # if response is empty
     print ("      There is no network-device")
 else:
     for item in device_ip_list:
        print ('\t',item)
 print ("-----------------------------")
-    
+

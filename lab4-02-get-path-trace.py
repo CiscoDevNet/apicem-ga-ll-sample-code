@@ -23,22 +23,22 @@ except:
 url = "https://"+apicem_ip+"/api/"+version+"/network-device"
 try:
     resp= requests.get(url,headers=headers,verify = False)
-    print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status 
+    print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status
     response_json = resp.json() # Get the json-encoded content from response
     for item in response_json["response"]:
         device_ip_list.append(item["managementIpAddress"])
 except:
     print ("Something wrong cannot get network-device IP list !")
-         
-# print out a IP list for user to select         
+
+# print out a IP list for user to select
 print ("\n---------- host ip ----------")
-if host_ip_list== [] :   # if response is not empty
+if host_ip_list== [] :   # if response is empty
     print ("\n      There is no host")
 else:
     for item in host_ip_list:
         print ('\t',item)
 print ("----- network-device ip -----")
-if device_ip_list == [] :   # if response is not empty
+if device_ip_list == [] :   # if response is empty
     print ("      There is no network-device")
 else:
     for item in device_ip_list:
@@ -52,7 +52,7 @@ if host_ip_list== [] and device_ip_list == []:
 
 print ("*** Please note that not all source/destination ip pair will return a path - no route. ! *** \n")
 
-# Select source ip    
+# Select source ip
 select = True
 while select:
     s_ip = input('=> Please select a source ip address from above list: ')
@@ -115,7 +115,7 @@ while pathId =="":
         if response_json["response"]["isError"] == "true":
             print ("\nSomething not right, here is the response:\n")
             print ("\n*** Response from GET /flow-analysis/pathId.- Trace path information. ***\n",json.dumps(response_json,indent=4))
-        else:                            
+        else:
             pathId = response_json["response"]["progress"]
             print ("\nPOST flow-analysis task is finished now, here is the pathId: ",pathId)
             url = "https://"+apicem_ip+"/api/"+version+"/flow-analysis/"+pathId
