@@ -25,7 +25,7 @@ if status != 200:
 # Make sure there is at least one network device
 
 if policy == [] :
-    print ("No policy found !")
+    print ("No policy was found !")
     sys.exit()
 # if response is not empty 
 policy_list = []

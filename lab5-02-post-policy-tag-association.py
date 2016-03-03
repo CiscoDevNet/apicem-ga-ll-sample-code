@@ -23,7 +23,7 @@ if status != 200:
     sys.exit()
 
 if device == []:
-    print ("Oops! No device found ! Discover network device first.")
+    print ("Oops! No device was found ! Discover network device first.")
     sys.exit()
     
 ############# select a device for taging #############   
@@ -60,7 +60,7 @@ while select:
         break
      # End of while loop
 else:
-    print ("Oops! No device found ! Discover network device first.")
+    print ("Oops! No device was found ! Discover network device first.")
     sys.exit() 
 
     
@@ -71,7 +71,7 @@ resp = requests.get(url,headers=headers,verify=False)
 response_json = resp.json()
 tag = response_json["response"] # policy tags
 if tag ==[] :
-    print ("No policy tag found, create policy tag first !")
+    print ("No policy tag was found, create policy tag first !")
     sys.exit()
     
 print ("Policy Tag:")

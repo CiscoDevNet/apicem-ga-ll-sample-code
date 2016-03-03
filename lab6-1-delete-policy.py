@@ -54,7 +54,7 @@ while select: # at this moment we just want to find out if user's input is match
             select = False
             break
     if id == "":
-        print ("Oops! Policy name not found, please try again or enter 'exit'")
+        print ("Oops! No policy name was found, please try again or enter 'exit'")
 policy_name = user_input
 # End of while loop
 

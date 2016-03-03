@@ -23,7 +23,7 @@ resp = requests.get(url,headers=headers,verify=False)
 response_json = resp.json()
 tag = response_json["response"] # policy tags
 if tag ==[] :
-    print ("No policy tag found, create policy tag first !")
+    print ("No policy tag was found, create policy tag first !")
     sys.exit()
     
 print ("Policy Tag:")
@@ -94,7 +94,7 @@ while select:
             select = False
             break
     if app_id == "":
-        print ("Oops! application name found, please try again or enter 'exit'")
+        print ("Oops! application name was found, please try again or enter 'exit'")
 # End of while loop
 
 ########## Creating policy #############
