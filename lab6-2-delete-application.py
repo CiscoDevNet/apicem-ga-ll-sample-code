@@ -41,6 +41,7 @@ def list_custom_app(api="",key="",value='',name="",uid=""):
         else:
             print (tabulate(app_show_list, headers=['number','custom application','id'],tablefmt="rst"),'\n')
             return app_show_list
+print ("Processing custom application list, please wait......\n")
 custom_app=list_custom_app("/application","longDescription","custom application","name","instanceUuid")
 
 ######## select an application and delete it #######
