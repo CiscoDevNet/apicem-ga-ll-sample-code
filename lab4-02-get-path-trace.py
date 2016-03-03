@@ -96,7 +96,12 @@ else:
 
 # When see the endTime field from response above means that get flow-path task is completed
 pathId = ""
+count = 0
 while pathId =="":
+    count += 1
+    if count > 30:
+        print ("No routing path was found. Please try using different source and destination !")
+        sys.exit()
     try:
         # Can we see endTime ?
         response_json["response"]["endTime"]
