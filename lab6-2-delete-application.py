@@ -36,16 +36,17 @@ def list_custom_app(api="",key="",value='',name="",uid=""):
         # Show all custom applications
         # Pretty print tabular data, needs 'tabulate' module
         if app_show_list == []:
-            print ("no custom NBAR2 application found !")
+            print ("No custom NBAR2 application found !")
             sys.exit()
         else:
             print (tabulate(app_show_list, headers=['number','custom application','id'],tablefmt="rst"),'\n')
             return app_show_list
+# End of function
+
 print ("Processing custom application list, please wait......\n")
 custom_app=list_custom_app("/application","longDescription","custom application","name","instanceUuid")
 
 ######## select an application and delete it #######
-#### Select ####
 select = True
 id = ""
 # Ask user's input 
