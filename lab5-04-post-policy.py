@@ -53,11 +53,11 @@ while select:
 url = "https://"+apicem_ip+"/api/"+version+"/application"     # API base url
 app = []
 try:
-    resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /network-device" request
+    resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /application" request
     status = resp.status_code
     print("status: ",status)
     response_json = resp.json() # Get the json-encoded content from response
-    app = response_json["response"] # network-device
+    app = response_json["response"]
 except:
     print ("Something wrong, cannot get application information")
     sys.exit()  

@@ -9,11 +9,11 @@ headers = {"X-Auth-Token": ticket}
 url = "https://"+apicem_ip+"/api/"+version+"/policy"     # API base url
 policy = []
 try:
-    resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /network-device" request
+    resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /policy" request
     status = resp.status_code
     print("status: ",status)
     response_json = resp.json() # Get the json-encoded content from response
-    policy = response_json["response"] # network-device
+    policy = response_json["response"]
 except:
     print ("Something wrong, cannot get application information")
     sys.exit()  

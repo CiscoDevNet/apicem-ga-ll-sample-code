@@ -9,7 +9,7 @@ def list_custom_app(api="",key="",value='',name="",uid=""):
     url = "https://"+apicem_ip+"/api/"+version+api     # API base url
     app = []
     try:
-        resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /network-device" request
+        resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /application" request
         status = resp.status_code
         # print("status: ",status)
         response_json = resp.json() # Get the json-encoded content from response
@@ -66,6 +66,6 @@ while select:
             
 #### Delete ####
 delete_url = "https://"+apicem_ip+"/api/"+version+"/application/"+id
-resp= requests.delete(delete_url,headers=headers,verify = False) # The response (result) from "GET /network-device" request
+resp= requests.delete(delete_url,headers=headers,verify = False) # The response (result)
 print("status: ",resp.status_code)
 print ("Response:",json.dumps(resp.json(),indent=4))
