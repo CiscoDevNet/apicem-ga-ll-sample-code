@@ -31,7 +31,7 @@ try:
     response_json = resp.json() # Get the json-encoded content from response
     categories = response_json["response"] # category
 except:
-    print ("Something wrong, cannot get application information")
+    print ("Something wrong, cannot get category information")
     sys.exit()
 for item in categories:
     if item["name"] == app_json["category"]:

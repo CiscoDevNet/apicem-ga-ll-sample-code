@@ -4,20 +4,19 @@ from apicem_config import * # APIC-EM IP is assigned in apicem_config.py
 ticket = get_X_auth_token()
 headers = {"X-Auth-Token": ticket}
 
-#### list all custom applications and return the list for further use ####
-def list_custom_app(api="",key="",value='',name="",uid=""):
+#### create general purpose function that print a list filtered by a ke/value paor and return the list for further use ####
+def custom_get_list(api="",key="",value='',name="",uid=""):
     url = "https://"+apicem_ip+"/api/"+version+api     # API base url
     app = []
     try:
-        resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /application" request
+        resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET /API" request
         status = resp.status_code
         # print("status: ",status)
         response_json = resp.json() # Get the json-encoded content from response
         app = response_json["response"] # application list
     except:
-        print ("Something wrong, cannot get application information")
+        print ("Something wrong, cannot get /api information")
         sys.exit()  
-    
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         print (resp.text)
@@ -44,7 +43,7 @@ def list_custom_app(api="",key="",value='',name="",uid=""):
 # End of function
 
 print ("Processing custom application list, please wait......\n")
-custom_app=list_custom_app("/application","longDescription","custom application","name","instanceUuid")
+custom_app=custom_get_list("/application","longDescription","custom application","name","instanceUuid")
 
 ######## select an application and delete it #######
 select = True

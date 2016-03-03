@@ -15,7 +15,7 @@ try:
     response_json = resp.json() # Get the json-encoded content from response
     policy = response_json["response"]
 except:
-    print ("Something wrong, cannot get application information")
+    print ("Something wrong, cannot get policy information")
     sys.exit()  
     
 if status != 200:
@@ -66,20 +66,28 @@ for item in policy_list:
         print ("Deleting",policy_name,"....")
         delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/"+id
         resp= requests.delete(delete_url,headers=headers,verify = False)
+        print("status: ",resp.status_code)
+        print ("Response:",json.dumps(resp.json(),indent=4))
     if (policy_name+"-D") in item: # if user_input is matched
         id = item[1] # policy id
         print ("Deleting",policy_name+"-D","....")
         delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/"+id
         resp= requests.delete(delete_url,headers=headers,verify = False)
+        print("status: ",resp.status_code)
+        print ("Response:",json.dumps(resp.json(),indent=4))
     if (policy_name+"-BR") in item: # if user_input is matched
         id = item[1] # policy id
         print ("Deleting",policy_name+"-BR","....")
         delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/"+id
         resp= requests.delete(delete_url,headers=headers,verify = False)
+        print("status: ",resp.status_code)
+        print ("Response:",json.dumps(resp.json(),indent=4))
     if (policy_name+"-IR") in item: # if user_input is matched
         id = item[1] # policy id
         print ("Deleting",policy_name+"-IR","....")
         delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/"+id
         resp= requests.delete(delete_url,headers=headers,verify = False)
+        print("status: ",resp.status_code)
+        print ("Response:",json.dumps(resp.json(),indent=4))
     
 

@@ -14,7 +14,7 @@ try:
     response_json = resp.json() # Get the json-encoded content from response
     policy = response_json["response"] # network-device
 except:
-    print ("Something wrong, cannot get application information")
+    print ("Something wrong, cannot get policy information")
     sys.exit()  
     
 if status != 200:
