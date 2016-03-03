@@ -23,6 +23,8 @@ while select:
         break
     
 ########## Get category id ##########
+# If the DB initialize, these ids will change. So get id dynamically.
+
 url = "https://"+apicem_ip+"/api/"+version+"/category"
 try:
     resp= requests.get(url,headers=headers,verify = False) # The response (result) from "GET 'category" request
