@@ -1,5 +1,5 @@
 from apicem_config import * # apicem_config.py is the central place to change the apic-em IP, username, password ...etc
-import time # Need it for delay - sleep() function
+import threading,time # Need it for delay - sleep() function
 
 # Get token - function is in apicem_config.py
 ticket = get_X_auth_token()
@@ -96,24 +96,30 @@ else:
     status = response_json["response"]["request"]["status"]
 #   print (status)
 
-count = 0
-while status != "COMPLETED":
-    if status == "FAILED":
-        print("Unable to find full path. No traceroute or netflow information found. Failing path calculation.")
-        sys.exit()
-    print ("\nTask is not finished yet, sleep 1 second then try again")
-    count += 1
-    if count > 30:
-        print ("No routing path was found. Please try using different source and destination !")
-        sys.exit()
-    try:
-        url = "https://"+apicem_ip+"/api/"+version+"/flow-analysis/"+flowAnalysisId
-        r = requests.get(url,headers=headers,verify=False)
-        response_json = r.json()
-        print ("\nGET flow-analysis with flow-analysisId status: ",r.status_code)
-        print ("Response from GET /flow-analysis/"+flowAnalysisId,json.dumps(response_json,indent=4))
-        status = response_json["response"]["request"]["status"]
-    except:
-        # Something is wrong
-        print ("\nSomething is wrong when executing get /flow-analysis/{flowAnalysisId}")
-    
+# non-blocking wait
+def check_status(arg):
+    count = 0
+    status = arg
+    while status != "COMPLETED":
+        if status == "FAILED":
+            print("Unable to find full path. No traceroute or netflow information found. Failing path calculation.")
+            sys.exit()
+        print ("\nTask is not finished yet, sleep 1 second then try again")
+        count += 1
+        if count > 30:
+            print ("\nNo routing path was found. Please try using different source and destination !")
+            sys.exit()
+        try:
+            url = "https://"+apicem_ip+"/api/"+version+"/flow-analysis/"+flowAnalysisId
+            r = requests.get(url,headers=headers,verify=False)
+            response_json = r.json()
+            print ("\nGET flow-analysis with flow-analysisId status: ",r.status_code)
+            print ("Response from GET /flow-analysis/"+flowAnalysisId,json.dumps(response_json,indent=4))
+            status = response_json["response"]["request"]["status"]
+        except:
+            # Something is wrong
+            print ("\nSomething is wrong when executing get /flow-analysis/{flowAnalysisId}")
+
+thread = threading.Thread(target=check_status, args=(status,))
+thread.start()    
+print ("\n!!!!!!!!! Non blocking !!!!!!!!!\n")
