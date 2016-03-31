@@ -105,6 +105,7 @@ def check_status(arg):
             print("Unable to find full path. No traceroute or netflow information found. Failing path calculation.")
             sys.exit()
         print ("\nTask is not finished yet, sleep 1 second then try again")
+        time.sleep(1)
         count += 1
         if count > 30:
             print ("\nNo routing path was found. Please try using different source and destination !")
@@ -121,5 +122,4 @@ def check_status(arg):
             print ("\nSomething is wrong when executing get /flow-analysis/{flowAnalysisId}")
 
 thread = threading.Thread(target=check_status, args=(status,))
-thread.start()    
-print ("\n!!!!!!!!! Non blocking !!!!!!!!!\n")
+thread.start()
