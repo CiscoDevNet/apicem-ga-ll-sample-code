@@ -45,8 +45,8 @@ if tag_to_delet=="":
 #### Delete ####
 param={'policyTag':tag_to_delet}
 delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/tag/"
-# print (delete_url)
 resp= requests.delete(delete_url,params=param,headers=headers,verify = False)
 print("status: ",resp.status_code)
-# print ("Response:",json.dumps(resp.json(),indent=4))
+print ("Response:",json.dumps(resp.json(),indent=4))
+
     
