@@ -90,7 +90,6 @@ while select:
         print ("Oops! number is out of range, please try again or enter 'exit'")
     else:
         device_id_to_delet=device[int(num)-1][3]
-        print (device_id_to_delet)
         break   
 # End of while loop
 
@@ -103,9 +102,5 @@ print("status: ",resp.status_code)
 print ("Response:",json.dumps(resp.json(),indent=4))
 
 
-# Show all policies
-# Pretty print tabular data, needs 'tabulate' module
-# print (apicem.tabulate(policy_list, headers=['policy','id'],tablefmt="rst"),'\n')
-  
- 
+
 
