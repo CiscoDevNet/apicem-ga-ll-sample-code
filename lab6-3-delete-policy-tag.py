@@ -2,7 +2,7 @@ from apicem_config import * # APIC-EM IP is assigned in apicem_config.py
 
 # Get ticket - function is in apicem_config.py
 ticket = get_X_auth_token()
-headers = {"X-Auth-Token": ticket}
+headers = {"X-Auth-Token": ticket,'content-type': 'application/json'}
 
 
 ######## select a policy tag to associate with device ##########
@@ -43,9 +43,10 @@ if tag_to_delet=="":
     sys.exit()
 
 #### Delete ####
-delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/tag/?policyTag="+tag_to_delet
-print (delete_url)
-resp= requests.delete(delete_url,headers=headers,verify = False)
+param={'policyTag':tag_to_delet}
+delete_url = "https://"+apicem_ip+"/api/"+version+"/policy/tag/"
+# print (delete_url)
+resp= requests.delete(delete_url,params=param,headers=headers,verify = False)
 print("status: ",resp.status_code)
-print ("Response:",json.dumps(resp.json(),indent=4))
+# print ("Response:",json.dumps(resp.json(),indent=4))
     
