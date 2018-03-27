@@ -86,7 +86,7 @@ while select:
     num = num.replace(" ","") # ignore space
     if tag_num.lower() == 'exit': 
         sys.exit()           
-    if tag_num == "" or int(tag_num) < 1 or int(tag_num) > i:
+    if num == "" or int(num) < 1 or int(num) > i:
         print ("Oops! number is out of range, please try again or enter 'exit'")
     else:
         device_id_to_delet=device[int(num)-1][3]
